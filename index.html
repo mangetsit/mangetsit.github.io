@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Man Gets It</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f0ece4;
+      --accent: #e8401c;
+      --mid: #1a1a1a;
+      --muted: #888;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'IBM Plex Sans', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      background: var(--black);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      padding: 5rem 2.5rem 4rem;
+      border-bottom: 1px solid #1e1e1e;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 9rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 380px;
+      font-weight: 300;
+    }
+
+    .hero-sub strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* VIDEOS GRID */
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 2.5rem 2.5rem 1.2rem;
+    }
+
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      background: #1a1a1a;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .video-card {
+      background: var(--black);
+      padding: 2rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .video-card:hover { background: #111; }
+
+    .video-card:hover .play-btn { background: var(--accent); }
+
+    .video-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--mid);
+      margin-bottom: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.85;
+    }
+
+    .play-btn {
+      position: absolute;
+      bottom: 0.8rem;
+      right: 0.8rem;
+      width: 36px;
+      height: 36px;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .play-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--white);
+      margin-left: 2px;
+    }
+
+    .video-ep {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .video-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+
+    .video-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ABOUT STRIP */
+    .about-strip {
+      margin: 1px 0 0;
+      padding: 3.5rem 2.5rem;
+      background: var(--mid);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 3rem;
+      align-items: center;
+      border-top: 1px solid #222;
+    }
+
+    .about-tag {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: #333;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      letter-spacing: 0.1em;
+    }
+
+    .about-text h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      max-width: 600px;
+      font-weight: 300;
+    }
+
+    .about-text p strong { color: var(--white); font-weight: 600; }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 2.5rem;
+      border-top: 1px solid #1a1a1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: #444;
+      letter-spacing: 0.1em;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 680px) {
+      .hero { grid-template-columns: 1fr; }
+      nav ul { gap: 1.2rem; }
+      .about-strip { grid-template-columns: 1fr; }
+      .about-tag { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="index.html">Man <span>Gets</span> It</a>
+    <ul>
+      <li><a href="index.html">Videos</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h1 class="hero-title">Man<br><span>Gets</span><br>It.</h1>
+    <p class="hero-sub">
+      <strong>Real talk. No fluff.</strong><br><br>
+      Every video comes with the backstory, the context, and the stuff that didn't make the cut. Because the edit is never the whole story.
+    </p>
+  </section>
+
+  <div class="section-label">Latest Videos</div>
+
+  <div class="videos">
+
+    <a class="video-card" href="video-001.html">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video thumbnail" />
+        <div class="play-btn">
+          <svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg>
+        </div>
+      </div>
+      <div class="video-ep">EP. 001</div>
+      <div class="video-title">Your Video Title Here</div>
+      <div class="video-desc">Short description of what this one's about. Keep it punchy — one or two lines max.</div>
+    </a>
+
+    <a class="video-card" href="video-002.html">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video thumbnail" />
+        <div class="play-btn">
+          <svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg>
+        </div>
+      </div>
+      <div class="video-ep">EP. 002</div>
+      <div class="video-title">Another Video Title</div>
+      <div class="video-desc">Another short description. This is placeholder text — replace with your actual content.</div>
+    </a>
+
+    <a class="video-card" href="video-003.html">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video thumbnail" />
+        <div class="play-btn">
+          <svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg>
+        </div>
+      </div>
+      <div class="video-ep">EP. 003</div>
+      <div class="video-title">Third Video Title</div>
+      <div class="video-desc">Keep descriptions consistent in length. One or two punchy sentences works best.</div>
+    </a>
+
+  </div>
+
+  <div class="about-strip">
+    <div class="about-tag">About</div>
+    <div class="about-text">
+      <h2>Who's Behind This</h2>
+      <p>
+        <strong>Man Gets It</strong> is [your description here]. Each video has a full page with the backstory, what was cut, and why it got made. Replace this with your actual about blurb.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Man Gets It</p>
+    <p><a href="https://youtube.com/@yourchannel" target="_blank">YouTube →</a></p>
+  </footer>
+
+</body>
+</html>
