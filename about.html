@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Man Gets It</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f0ece4;
+      --accent: #e8401c;
+      --mid: #1a1a1a;
+      --muted: #888;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'IBM Plex Sans', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      background: var(--black);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--white); }
+    nav ul a.active { color: var(--white); }
+
+    /* HEADER */
+    .page-header {
+      padding: 5rem 2.5rem 4rem;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+    }
+
+    .page-header h1 span { color: var(--accent); }
+
+    /* CONTENT */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 0;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .about-sidebar {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid #1e1e1e;
+    }
+
+    .about-sidebar .label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .about-sidebar p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .about-sidebar a {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+      transition: color 0.2s;
+    }
+
+    .about-sidebar a:hover { color: var(--white); }
+
+    .about-main {
+      padding: 3rem 3rem 3rem 3rem;
+    }
+
+    .about-main p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+      font-weight: 300;
+      max-width: 640px;
+    }
+
+    .about-main p strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .about-main h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.06em;
+      margin: 2.5rem 0 1rem;
+      color: var(--white);
+    }
+
+    /* STAT ROW */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid #1e1e1e;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .stat {
+      padding: 2.5rem;
+      border-right: 1px solid #1e1e1e;
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 2.5rem;
+      border-top: 1px solid #1a1a1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: #444;
+      letter-spacing: 0.1em;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 680px) {
+      .about-content { grid-template-columns: 1fr; }
+      .about-sidebar { border-right: none; border-bottom: 1px solid #1e1e1e; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid #1e1e1e; }
+      nav ul { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="index.html">Man <span>Gets</span> It</a>
+    <ul>
+      <li><a href="index.html">Videos</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <h1>About<br><span>The Show</span></h1>
+  </div>
+
+  <div class="about-content">
+
+    <div class="about-sidebar">
+      <span class="label">Find Me</span>
+      <a href="https://youtube.com/@mangetsit" target="_blank">YouTube →</a>
+      <a href="#">Instagram →</a>
+      <a href="#">Twitter / X →</a>
+
+      <br>
+      <span class="label">Contact</span>
+      <p>your@email.com</p>
+    </div>
+
+    <div class="about-main">
+      <p>
+        <strong>Man Gets It</strong> is [your intro here — one punchy sentence about what the channel is].
+      </p>
+      <p>
+        [Second paragraph — a bit more about you, your background, why you started this. Keep it real, not corporate. Two or three sentences.]
+      </p>
+
+      <h2>Why This Site</h2>
+      <p>
+        YouTube doesn't give you space to tell the full story. Every video here has its own page — the backstory, what got cut, what I was actually thinking. [Edit this to match your reasoning.]
+      </p>
+
+      <h2>How It Works</h2>
+      <p>
+        New video drops on YouTube. Then I write up the behind-the-scenes here — the context, the research, the stuff that didn't make the edit. [Adjust to how you actually work.]
+      </p>
+    </div>
+
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">00</div>
+      <div class="stat-label">Videos Published</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">00</div>
+      <div class="stat-label">Subscribers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2025</div>
+      <div class="stat-label">Started</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Man Gets It</p>
+    <p><a href="https://youtube.com/@mangetsit" target="_blank">YouTube →</a></p>
+  </footer>
+
+</body>
+</html>
